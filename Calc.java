@@ -8,16 +8,14 @@ public class Calc {
 
     public static int calculate(String s, int sum) {
         String parts[] = s.split(" ");
-        for (int i = 0; i < parts.length; i += 2) {
-            String substr = parts[i];
-            if (i == 0) 
+        String substr = parts[0];
+        sum += Integer.parseInt(substr);
+        for (int i = 2; i < parts.length; i += 2) {
+            substr = parts[i];
+            if (parts[i - 1].equals("+")) 
                 sum += Integer.parseInt(substr);
-            else {
-                if (parts[i - 1].equals("+")) 
-                    sum += Integer.parseInt(substr);
-                else if (parts[i - 1].equals("-")) 
-                    sum -= Integer.parseInt(substr);
-            }
+            else if (parts[i - 1].equals("-")) 
+                sum -= Integer.parseInt(substr);
         }
         return sum;
     }
